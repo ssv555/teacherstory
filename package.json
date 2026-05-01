@@ -1,0 +1,48 @@
+{
+  "name": "teacherstory",
+  "module": "back/src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "bun --env-file=.env.production back/src/index.ts",
+    "dev:server": "bun --env-file=.env.development --watch back/src/index.ts",
+    "dev:front": "bun run --cwd front dev",
+    "dev": "bunx concurrently -k --raw \"bun --env-file=.env.development --watch back/src/index.ts\" \"bunx wait-on -t 60000 tcp:127.0.0.1:33001 && bun run --cwd front dev\"",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:migrate:prod": "bun --env-file=.env.production back/src/scripts/migrate.ts",
+    "db:push": "drizzle-kit push && bun back/src/db/seeds.ts",
+    "db:push:prod": "drizzle-kit push --config=drizzle.config.prod.ts",
+    "db:studio": "drizzle-kit studio",
+    "typecheck": "bun run --cwd front typecheck && bunx tsc --noEmit --project back/tsconfig.json",
+    "typecheck:front": "bun run --cwd front typecheck",
+    "typecheck:back": "bunx tsc --noEmit --project back/tsconfig.json",
+    "lint": "bun run --cwd front lint",
+    "build": "bun run lint && bun run typecheck:front && bun run --cwd front build"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.13",
+    "@vitejs/plugin-react": "^6.0.1",
+    "concurrently": "^9.2.1",
+    "drizzle-kit": "^0.31.10",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "vite": "^8.0.10",
+    "wait-on": "^9.0.5"
+  },
+  "peerDependencies": {
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^1.4.2",
+    "@elysiajs/static": "^1.4.10",
+    "@elysiajs/swagger": "^1.3.1",
+    "drizzle-orm": "^0.45.2",
+    "elysia": "^1.4.28",
+    "jose": "^6.2.3",
+    "lru-cache": "^11.3.5",
+    "postgres": "^3.4.9",
+    "sharp": "^0.34.5",
+    "zod": "^4.3.6"
+  }
+}

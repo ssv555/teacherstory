@@ -1,0 +1,14 @@
+.idea/
+.DS_Store
+.env.laptop
+.env.production
+.env.development
+*.tsbuildinfo
+bun.lock
+
+node_modules/
+dist/
+back/data/content/
+back/log/
+front/src/routeTree.gen.ts
+back/src/db/sql/

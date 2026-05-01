@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//d/Data/Documents/Programming/Projects/WEB/VDole/**)",
+      "Read(//d/Data/Documents/Programming/Projects/**)"
+    ]
+  }
+}

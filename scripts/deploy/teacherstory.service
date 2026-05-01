@@ -1,0 +1,19 @@
+[Unit]
+Description=TeacherStory — Photo Portfolio API
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/var/www/teacherstory.it-joy.ru
+Environment="NODE_ENV=production"
+ExecStart=/usr/local/bin/bun run start
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=teacherstory
+
+[Install]
+WantedBy=multi-user.target
